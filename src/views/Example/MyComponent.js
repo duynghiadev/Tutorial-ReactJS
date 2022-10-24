@@ -12,15 +12,21 @@ class MyComponent extends React.Component {
     });
   };
 
+  handleOnchangeChannel = (event) => {
+    this.setState({
+      channel: event.target.value,
+    });
+  };
+
   handleClickButton = (event) => {
-    console.log("hit the button");
     alert("Click Success");
   };
 
   render() {
+    console.log(">>> call render: ", this.state);
     return (
       <>
-        <div className="Header first">
+        <div className="first">
           <input
             type="text"
             value={this.state.name}
@@ -28,10 +34,15 @@ class MyComponent extends React.Component {
           />
           My name is {this.state.name}
         </div>
-        <div className="Header second">
-          <h4>Hello MyComponent {this.state.channel}</h4>
+        <div className="second">
+          <input
+            type="text"
+            value={this.state.channel}
+            onChange={(event) => this.handleOnchangeChannel(event)}
+          />
+          My channel is {this.state.channel}
         </div>
-        <div className="Header three">
+        <div className="three">
           <button onClick={(event) => this.handleClickButton(event)}>
             click me
           </button>
