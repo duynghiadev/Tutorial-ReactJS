@@ -2,51 +2,51 @@ import React from "react";
 
 class MyComponent extends React.Component {
   state = {
-    name: "kunhi",
-    channel: "Nghia Basil",
+    firstName: "",
+    lastName: "",
   };
 
-  handleOnChangeName = (event) => {
+  handleChangeFirstName = (event) => {
     this.setState({
-      name: event.target.value,
+      firstName: event.target.value,
     });
   };
 
-  handleOnchangeChannel = (event) => {
+  handleChangeLastName = (event) => {
     this.setState({
-      channel: event.target.value,
+      lastName: event.target.value,
     });
   };
 
-  handleClickButton = (event) => {
-    alert("Click Success");
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(">>> check data input: ", this.state);
   };
 
   render() {
     console.log(">>> call render: ", this.state);
     return (
       <>
-        <div className="first">
+        <form>
+          <label htmlFor="fname">First name:</label>
+          <br />
           <input
             type="text"
-            value={this.state.name}
-            onChange={(event) => this.handleOnChangeName(event)}
+            value={this.state.firstName}
+            onChange={(event) => this.handleChangeFirstName(event)}
           />
-          My name is {this.state.name}
-        </div>
-        <div className="second">
+          <br />
+          <label htmlFor="lname">Last name:</label>
+          <br />
           <input
             type="text"
-            value={this.state.channel}
-            onChange={(event) => this.handleOnchangeChannel(event)}
+            value={this.state.lastName}
+            onChange={(event) => this.handleChangeLastName(event)}
           />
-          My channel is {this.state.channel}
-        </div>
-        <div className="three">
-          <button onClick={(event) => this.handleClickButton(event)}>
-            click me
-          </button>
-        </div>
+          <br />
+          <br />
+          <input type="submit" onClick={(event) => this.handleSubmit(event)} />
+        </form>
       </>
     );
   }
