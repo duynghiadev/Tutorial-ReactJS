@@ -12,6 +12,11 @@ class MyComponent extends React.Component {
     });
   };
 
+  handleClickButton = (event) => {
+    console.log("hit the button");
+    alert("Click Success");
+  };
+
   render() {
     return (
       <>
@@ -25,6 +30,11 @@ class MyComponent extends React.Component {
         </div>
         <div className="Header second">
           <h4>Hello MyComponent {this.state.channel}</h4>
+        </div>
+        <div className="Header three">
+          <button onClick={(event) => this.handleClickButton(event)}>
+            click me
+          </button>
         </div>
       </>
     );
