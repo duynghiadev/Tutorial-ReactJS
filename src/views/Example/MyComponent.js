@@ -42,7 +42,6 @@ class MyComponent extends React.Component {
   };
 
   render() {
-    console.log(">>> call render: ", this.state);
     return (
       <>
         <form>

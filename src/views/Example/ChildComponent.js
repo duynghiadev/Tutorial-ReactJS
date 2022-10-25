@@ -1,47 +1,42 @@
 import React from "react";
 
-class ChildComponent extends React.Component {
-  state = {
-    firstName: "",
-    lastName: "",
-  };
+// class ChildComponent extends React.Component {
+//   render() {
+//     console.log(">>> check props: ", this.props);
+//     // let name = this.props.name;
+//     // let age = this.props.age;
+// let { arrJobs } = props;
+//   return (
+//     <>
+//       <div className="job-lists">
+//         {arrJobs.map((item, index) => {
+//           return (
+//             <div key={index}>
+//               {item.title} - {item.salary}
+//             </div>
+//           );
+//         })}
+//       </div>
+//     </>
+//   );
+//   }
+// }
 
-  handleChangeFirstName = (event) => {
-    this.setState({
-      firstName: event.target.value,
-    });
-  };
+const ChildComponent = (props) => {
+  let { arrJobs } = props;
+  return (
+    <>
+      <div className="job-lists">
+        {arrJobs.map((item, index) => {
+          return (
+            <div key={index}>
+              {item.title} - {item.salary}
+            </div>
+          );
+        })}
+      </div>
+    </>
+  );
+};
 
-  handleChangeLastName = (event) => {
-    this.setState({
-      lastName: event.target.value,
-    });
-  };
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-    console.log(">>> check data input: ", this.state);
-  };
-
-  render() {
-    console.log(">>> check props: ", this.props);
-    // let name = this.props.name;
-    // let age = this.props.age;
-
-    let { name, age, address, arrJobs } = this.props;
-    return (
-      <>
-        <div className="job-lists">
-          {arrJobs.map((item, index) => {
-            return (
-              <div key={index}>
-                {item.title} - {item.salary}
-              </div>
-            );
-          })}
-        </div>
-      </>
-    );
-  }
-}
 export default ChildComponent;
