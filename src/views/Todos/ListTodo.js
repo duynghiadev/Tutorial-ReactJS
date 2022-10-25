@@ -19,6 +19,7 @@ class ListTodo extends Component {
         title: "fixing bugs",
       },
     ],
+    editTodo: {},
   };
 
   addNewTodo = (todo) => {
@@ -28,9 +29,51 @@ class ListTodo extends Component {
     toast.success("Wow so easy 😍");
   };
 
+  handleDeleteTodo = (todo) => {
+    let currentTodos = this.state.listTodos;
+    currentTodos = currentTodos.filter((item) => item.id !== todo.id);
+    this.setState({
+      listTodos: currentTodos,
+    });
+    toast.success("Delete success 😍");
+  };
+
+  handleEditTodo = (todo) => {
+    let { editTodo, listTodos } = this.state;
+    let isEmptyObj = Object.keys(editTodo).length === 0;
+
+    // Save
+    if (isEmptyObj === false && editTodo.id === todo.id) {
+      let listTodosCopy = [...listTodos];
+      let objIndex = listTodosCopy.findIndex((item) => item.id === todo.id);
+      listTodosCopy[objIndex].title = editTodo.title;
+
+      this.setState({
+        listTodos: listTodosCopy,
+        editTodo: {},
+      });
+      toast.success("Update success 😍");
+
+      return;
+    }
+
+    // Edit
+    this.setState({
+      editTodo: todo,
+    });
+  };
+
+  handleOnChangeEditTodo = (event) => {
+    let editTodoCopy = { ...this.state.editTodo };
+    editTodoCopy.title = event.target.value;
+    this.setState({
+      editTodo: editTodoCopy,
+    });
+  };
+
   render() {
-    let { listTodos } = this.state;
-    // let state = this.state.listTodos;
+    let { listTodos, editTodo } = this.state;
+    let isEmptyObj = Object.keys(editTodo).length === 0;
 
     return (
       <div className="list-todo-container">
@@ -41,11 +84,43 @@ class ListTodo extends Component {
             listTodos.map((item, index) => {
               return (
                 <div key={item.id} className="todo-child">
-                  <span>
-                    {index + 1} - {item.title}
-                  </span>
-                  <button className="edit">Edit</button>
-                  <button className="delete">Delete</button>
+                  {isEmptyObj === true ? (
+                    <span>
+                      {index + 1} - {item.title}
+                    </span>
+                  ) : (
+                    <>
+                      {editTodo.id === item.id ? (
+                        <span>
+                          {index + 1} -
+                          <input
+                            value={editTodo.title}
+                            onChange={(event) =>
+                              this.handleOnChangeEditTodo(event)
+                            }
+                          />
+                        </span>
+                      ) : (
+                        <span>
+                          {index + 1} - {item.title}
+                        </span>
+                      )}
+                    </>
+                  )}
+                  <button
+                    className="edit"
+                    onClick={() => this.handleEditTodo(item)}
+                  >
+                    {isEmptyObj === false && editTodo.id === item.id
+                      ? "Save"
+                      : "Edit"}
+                  </button>
+                  <button
+                    className="delete"
+                    onClick={() => this.handleDeleteTodo(item)}
+                  >
+                    Delete
+                  </button>
                 </div>
               );
             })}
