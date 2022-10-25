@@ -38,6 +38,20 @@ class MyComponent extends React.Component {
     });
   };
 
+  componentDidUpdate(prevProps, prevState) {
+    console.log(
+      ">>> Run Component Did Update: ",
+      "prevState: ",
+      prevState,
+      "current state: ",
+      this.state
+    );
+  }
+
+  componentDidMount() {
+    console.log("Run Component Didmount");
+  }
+
   render() {
     return (
       <>
