@@ -28,7 +28,6 @@ function App() {
               <MyComponent />
             </Route>
           </Switch>
-          <Home />
         </header>
 
         <ToastContainer
