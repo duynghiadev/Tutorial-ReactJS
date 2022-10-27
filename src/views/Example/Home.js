@@ -16,7 +16,16 @@ class Home extends Component {
       <>
         <div>Hello Home from HomePage with Duy Nghia</div>
         <div>
-          <img src={logo} alt="avatar" />
+          <img
+            src={logo}
+            style={{
+              width: "200px",
+              height: "200px",
+              marginTop: "20px",
+              borderRadius: "100px",
+            }}
+            alt="avatar"
+          />
         </div>
       </>
     );
