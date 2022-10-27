@@ -19,23 +19,23 @@ function App() {
           <Nav />
           <img src={logo} className="App-logo" alt="logo" />
 
-          {/* <Switch> */}
-          <Route path="/" exact>
-            <Home />
-          </Route>
-          <Route path="/todo">
-            <ListTodo />
-          </Route>
-          <Route path="/about">
-            <MyComponent />
-          </Route>
-          <Route path="/user" exact>
-            <ListUser />
-          </Route>
-          <Route path="/user/:id">
-            <DetailUser />
-          </Route>
-          {/* </Switch> */}
+          <Switch>
+            <Route path="/" exact>
+              <Home />
+            </Route>
+            <Route path="/todo">
+              <ListTodo />
+            </Route>
+            <Route path="/about">
+              <MyComponent />
+            </Route>
+            <Route path="/user" exact>
+              <ListUser />
+            </Route>
+            <Route path="/user/:id">
+              <DetailUser />
+            </Route>
+          </Switch>
         </header>
 
         <ToastContainer
