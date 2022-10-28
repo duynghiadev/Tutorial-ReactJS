@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { withRouter } from "react-router";
 import Color from "../HOC/Color";
 import logo from "../../assets/images/logoChannel.jpg";
+import { connect } from "react-redux";
 
 class Home extends Component {
   componentDidMount() {
@@ -11,7 +12,7 @@ class Home extends Component {
   }
 
   render() {
-    console.log(">>> check props: ", this.props);
+    console.log(">>> check props data Redux: ", this.props.dataRedux);
     return (
       <>
         <div>Hello Home from HomePage with Duy Nghia</div>
@@ -32,4 +33,10 @@ class Home extends Component {
   }
 }
 
-export default Color(Home);
+const mapStateToProps = (state) => {
+  return {
+    dataRedux: state.users,
+  };
+};
+
+export default connect(mapStateToProps)(Color(Home));
